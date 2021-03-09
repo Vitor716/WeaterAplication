@@ -1,5 +1,8 @@
 package com.example.weatheraplication;
 
+
+
+
 public class Model {
 
     private  int id;
