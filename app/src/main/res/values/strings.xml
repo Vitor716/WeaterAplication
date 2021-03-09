@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WeatherAplication</string>
+    <string name="btnSalvar">Salvar</string>
+    <string name="btnPesquisar">Pesquisar</string>
+    <string name="btnListar">Listar</string>
+    <string name="name">Digite aqui o nome da cidade: </string>
+</resources>
