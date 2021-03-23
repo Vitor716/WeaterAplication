@@ -18,6 +18,7 @@ public class Request extends AsyncTask<String,Integer,String> {
 
     String myUrl;
     Context context;
+    String singleParsed = "";
 
     Request(Context context){
         this.context = context;
@@ -55,27 +56,19 @@ public class Request extends AsyncTask<String,Integer,String> {
         super.onPostExecute(s);
 
         String def;
-        try{
-            JSONObject js = new JSONObject(s);
+           try{
+            JSONArray js = new JSONArray(s);
 
-            JSONObject lEntries = js.getJSONObject("title");
-            JSONArray laArray = lEntries.getJSONArray("location_type");
+                JSONObject JO = (JSONObject) js.get(0);
+                singleParsed =  "Title:" + JO.get("title") + "\n"+
+                                "Latt_long" + JO.get("latt_long") + "\n"+
+                                "Location_type" + JO.get("location_type") + "\n";
 
-            JSONObject entries = laArray.getJSONObject(0);
-            JSONArray e = entries.getJSONArray("latt_long");
-
-            JSONObject jsonObject = e.getJSONObject(0);
-            JSONArray sensesArray = jsonObject.getJSONArray("senses");
-
-            JSONObject d = sensesArray.getJSONObject(0);
-            JSONArray de = d.getJSONArray("definitions");
-
-            def = de.getString(0);
-
-            Toast.makeText(context, def, Toast.LENGTH_SHORT).show();
+               Toast.makeText(context, singleParsed, Toast.LENGTH_SHORT).show();
 
         }catch(JSONException e){
             e.printStackTrace();
         }
     }
 }
+
