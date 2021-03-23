@@ -15,9 +15,8 @@ public class DataBase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "WT_BD";
     private static final String DICTONARY_TABLE = "weater";
     private static final String DEF_ID = "id";
-    private static final String LOCATION = "loc";
     private static final String TITLE = "title";
-    private static final String LATT = "lat";
+
 
 
 
@@ -33,8 +32,6 @@ public class DataBase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE weater ("+
                 "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                "latt TEXT,"+
-                "location TEXT,"+
                 "title TEXT)";
         db.execSQL(CREATE_TABLE);
     }
@@ -48,9 +45,7 @@ public class DataBase extends SQLiteOpenHelper {
     public void addData(Model model) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(LOCATION, model.getLocation());
         values.put(TITLE, model.getTitle());
-        values.put(LATT, model.getLatt());
 
 
         sqLiteDatabase.insert(DICTONARY_TABLE, null, values);
@@ -67,11 +62,9 @@ public class DataBase extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do{
                 int customID = cursor.getInt(0);
-                String customLatt =  cursor.getString(1);
-                String customLocation =  cursor.getString(1);
                 String customTitle =  cursor.getString(1);
 
-                Model newModel = new Model(customID, customLatt,  customLocation, customTitle);
+                Model newModel = new Model(customID,  customTitle);
                 returnList.add(newModel);
 
             }while (cursor.moveToNext());

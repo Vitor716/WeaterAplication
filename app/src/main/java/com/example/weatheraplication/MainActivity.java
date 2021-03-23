@@ -38,9 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Model cm = new Model();
-                cm.setLocation(editWord.getText().toString());
                 cm.setTitle(editWord.getText().toString());
-                cm.setLatt(editWord.getText().toString());
 
                 db.addData(cm);
 
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnPesquisar.setOnClickListener(new View.OnClickListener() {
+        btnListar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DataBase dataBaseHelper = new DataBase(MainActivity.this);
